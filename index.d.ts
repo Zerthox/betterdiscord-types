@@ -90,26 +90,26 @@ export type CancelPatch = () => void;
 
 type AnyFn = (...args: any) => any;
 
-export type PatchCallback<O extends AnyFn> = (
+export type PatchCallback<O> = (
     thisObject: any,
-    methodArguments: Parameters<O>,
-    returnValue: ReturnType<O>,
+    methodArguments: O extends AnyFn ? Parameters<O> : IArguments,
+    returnValue: O extends AnyFn ? ReturnType<O> : any,
 ) => any;
 
 export interface Patcher {
-    before<M extends Record<K, AnyFn>, K extends keyof M>(
+    before<M, K extends keyof M>(
         caller: string,
         moduleToPatch: M,
         functionName: K,
         callback: PatchCallback<M[K]>,
     ): CancelPatch;
-    after<M extends Record<K, AnyFn>, K extends keyof M>(
+    after<M, K extends keyof M>(
         caller: string,
         moduleToPatch: M,
         functionName: K,
         callback: PatchCallback<M[K]>,
     ): CancelPatch;
-    instead<M extends Record<K, AnyFn>, K extends keyof M>(
+    instead<M, K extends keyof M>(
         caller: string,
         moduleToPatch: M,
         functionName: K,
