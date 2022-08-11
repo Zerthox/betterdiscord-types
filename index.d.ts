@@ -264,6 +264,8 @@ export interface BdApi {
 
 type AnyFn = (...args: any) => any;
 
+type FnOrAny<F> = F extends AnyFn ? F : any;
+
 export interface Patcher {
     /**
      * Patches a function, executing the callback before it was called.
@@ -273,7 +275,7 @@ export interface Patcher {
         caller: string,
         moduleToPatch: M,
         functionName: K,
-        callback: PatchCallback<M[K]>,
+        callback: PatchBeforeCallback<FnOrAny<M[K]>>,
     ): CancelPatch;
 
     /**
@@ -284,7 +286,7 @@ export interface Patcher {
         caller: string,
         moduleToPatch: M,
         functionName: K,
-        callback: PatchCallback<M[K]>,
+        callback: PatchAfterCallback<FnOrAny<M[K]>>,
     ): CancelPatch;
 
     /**
@@ -295,7 +297,7 @@ export interface Patcher {
         caller: string,
         moduleToPatch: M,
         functionName: K,
-        callback: PatchCallback<M[K]>,
+        callback: PatchInsteadCallback<FnOrAny<M[K]>>,
     ): CancelPatch;
 
     /** Returns all patches for the given caller. */
@@ -305,16 +307,27 @@ export interface Patcher {
     unpatchAll(caller: string): void;
 }
 
-export type CancelPatch = () => void;
-
-export type PatchCallback<O> = (
+export type PatchBeforeCallback<O extends AnyFn> = (
     thisObject: any,
-    methodArguments: O extends AnyFn ? Parameters<O> : IArguments,
-    returnValue: O extends AnyFn ? ReturnType<O> : any,
+    methodArguments: Parameters<O>,
 ) => any;
 
+export type PatchAfterCallback<O extends AnyFn> = (
+    thisObject: any,
+    methodArguments: Parameters<O>,
+    returnValue: ReturnType<O>,
+) => any;
+
+export type PatchInsteadCallback<O extends AnyFn> = (
+    thisObject: any,
+    methodArguments: Parameters<O>,
+    originalMethod: O,
+) => any;
+
+export type CancelPatch = () => void;
+
 export interface PatchInfo {
-    callback: PatchCallback<any>;
+    callback: AnyFn;
     caller: string;
     id: number;
     type: "before" | "after" | "instead";
