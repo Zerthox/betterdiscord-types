@@ -42,16 +42,16 @@ export interface Plugin {
     load?(): void;
 
     /** @deprecated Use meta instead. */
-    getName(): string;
+    getName?(): string;
 
     /** @deprecated Use meta instead. */
-    getAuthor(): string;
+    getAuthor?(): string;
 
     /** @deprecated Use meta instead. */
-    getVersion(): string;
+    getVersion?(): string;
 
     /** @deprecated Use meta instead. */
-    getDescription(): string;
+    getDescription?(): string;
 }
 
 /** A class constructing a BetterDiscord plugin. */
