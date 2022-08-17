@@ -436,6 +436,7 @@ export interface ToastOptions {
 }
 
 export interface DialogOptions {
+    mode?: string;
     defaultPath?: string;
     filters?: FileFilter[];
     title?: string;
@@ -459,13 +460,15 @@ export interface DialogSaveOptions extends DialogOptions {
 
 export interface DialogResult {
     cancelled: boolean;
+    filePath?: string;
+    filePaths?: string[];
 }
 
-export interface DialogOpenResult extends DialogResult {
+export interface DialogOpenResult extends Omit<DialogResult, "filePaths"> {
     filePath: string;
 }
 
-export interface DialogSaveResult extends DialogResult {
+export interface DialogSaveResult extends Omit<DialogResult, "filePath"> {
     filePaths: string[];
 }
 
