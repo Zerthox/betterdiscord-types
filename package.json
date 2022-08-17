@@ -1,7 +1,7 @@
 {
     "name": "betterdiscord-types",
     "version": "0.1.0",
-    "description": "",
+    "description": "Type definitions for BetterDiscord",
     "author": "Zerthox",
     "license": "MIT",
     "scripts": {},
