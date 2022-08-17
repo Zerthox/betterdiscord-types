@@ -132,8 +132,8 @@ export interface BdApi {
     showToast(content: string, options?: ToastOptions): void;
 
     /** Opens an Electron dialog. */
-    openDialog(options: DialogOpenOptions): Promise<DialogOpenResult>;
     openDialog(options: DialogSaveOptions): Promise<DialogSaveResult>;
+    openDialog(options: DialogOpenOptions): Promise<DialogOpenResult>;
 
     /** Loads previously stored data. */
     loadData(pluginName: string, key: string): any;
@@ -436,7 +436,7 @@ export interface ToastOptions {
 }
 
 export interface DialogOptions {
-    mode?: string;
+    mode?: "open" | "save";
     defaultPath?: string;
     filters?: FileFilter[];
     title?: string;
