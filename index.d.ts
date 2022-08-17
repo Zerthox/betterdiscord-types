@@ -352,13 +352,28 @@ export interface Webpack {
     getModule(filter: ModuleFilter, options?: FilterOptions): any;
 
     /** Finds multiple modules using multiple filters. */
-    getBulk(...queries: ModuleQuery[]): any[];
+    getBulk<Q extends ModuleQuery[]>(...queries: Q): ModuleBulk<Q>;
 
-    /** Attempts to find a lazily-loaded module, resolving when it is loaded. */
+    /** Attempts to find a lazy loaded module, resolving when it is loaded. */
     waitForModule(
         filter: ModuleFilter,
         options?: WaitForModuleOptions,
     ): Promise<any>;
+}
+
+export interface ModuleQuery {
+    filter: ModuleFilter;
+    first?: boolean;
+    defaultExport?: boolean;
+}
+
+export type ModuleBulk<Q extends ModuleQuery[]> = {
+    [I in keyof Q]: Q[I]["first"] extends false ? any[] : any;
+};
+
+export interface WaitForModuleOptions {
+    signal?: AbortSignal;
+    defaultExport?: boolean;
 }
 
 export interface Filters {
@@ -383,17 +398,6 @@ export interface Filters {
 
 export interface FilterOptions {
     first?: boolean;
-    defaultExport?: boolean;
-}
-
-export interface ModuleQuery {
-    filter: ModuleFilter;
-    first?: boolean;
-    defaultExport?: boolean;
-}
-
-export interface WaitForModuleOptions {
-    signal?: AbortSignal;
     defaultExport?: boolean;
 }
 
