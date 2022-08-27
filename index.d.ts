@@ -308,18 +308,18 @@ export interface Patcher {
 }
 
 export type PatchBeforeCallback<O extends AnyFn> = (
-    thisObject: any,
+    thisObject: ThisParameterType<O>,
     methodArguments: Parameters<O>,
 ) => any;
 
 export type PatchAfterCallback<O extends AnyFn> = (
-    thisObject: any,
+    thisObject: ThisParameterType<O>,
     methodArguments: Parameters<O>,
     returnValue: ReturnType<O>,
 ) => any;
 
 export type PatchInsteadCallback<O extends AnyFn> = (
-    thisObject: any,
+    thisObject: ThisParameterType<O>,
     methodArguments: Parameters<O>,
     originalMethod: O,
 ) => any;
