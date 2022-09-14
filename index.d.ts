@@ -126,7 +126,7 @@ export interface BdApi {
     ): void;
 
     /** Shows a notice above Discord's chat layer. Returns a callback for closing the notice. */
-    showNotice(content: string | Node, options: NoticeOptions): CloseNotice;
+    showNotice(content: string | Node, options?: NoticeOptions): CloseNotice;
 
     /** Shows a toast towards the bottom of the screen. */
     showToast(content: string, options?: ToastOptions): void;
@@ -421,7 +421,7 @@ export interface ConfirmationModalOptions {
 }
 
 export interface NoticeOptions {
-    type?: string;
+    type?: "info" | "error" | "warning" | "success";
     buttons?: { label: string; onClick: () => void }[];
     timeout?: number;
 }
