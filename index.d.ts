@@ -349,10 +349,13 @@ export interface Webpack {
     Filters: Filters;
 
     /** Finds a module using a filter function. */
-    getModule(filter: ModuleFilter, options?: FilterOptions): any;
+    getModule<O extends FilterOptions>(
+        filter: ModuleFilter,
+        options?: O,
+    ): ModuleResult<O>;
 
     /** Finds multiple modules using multiple filters. */
-    getBulk<Q extends ModuleQuery[]>(...queries: Q): ModuleBulk<Q>;
+    getBulk<Q extends ModuleQuery[]>(...queries: Q): ModuleBulkResult<Q>;
 
     /** Attempts to find a lazy loaded module, resolving when it is loaded. */
     waitForModule(
@@ -361,14 +364,22 @@ export interface Webpack {
     ): Promise<any>;
 }
 
+export type ModuleResult<T extends { first?: boolean }> =
+    T["first"] extends true ? any[] : any;
+
+export interface FilterOptions {
+    first?: boolean;
+    defaultExport?: boolean;
+}
+
 export interface ModuleQuery {
     filter: ModuleFilter;
     first?: boolean;
     defaultExport?: boolean;
 }
 
-export type ModuleBulk<Q extends ModuleQuery[]> = {
-    [I in keyof Q]: Q[I]["first"] extends false ? any[] : any;
+export type ModuleBulkResult<Q extends ModuleQuery[]> = {
+    [I in keyof Q]: ModuleResult<Q[I]>;
 };
 
 export interface WaitForModuleOptions {
@@ -394,11 +405,6 @@ export interface Filters {
 
     /** Generates a combined filter from multiple filters. */
     combine(...filters: ModuleFilter[]): ModuleFilter;
-}
-
-export interface FilterOptions {
-    first?: boolean;
-    defaultExport?: boolean;
 }
 
 export interface AddonAPI<T> {
