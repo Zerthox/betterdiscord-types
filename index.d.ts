@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { LoDashStatic } from "lodash";
 import * as classNames from "classnames";
-import { ContextMenuEvent, FileFilter } from "electron";
+import { FileFilter } from "electron";
 import { Fiber } from "react-reconciler";
 
 declare global {
@@ -604,13 +604,13 @@ export interface Legacy {
 
     /**
      * Shows a generic but customizable modal.
-     * @deprecated
+     * @deprecated Use {@link UI.alert} instead.
      */
     alert(title: string, children: React.ReactChild): void;
 
     /**
      * Shows a generic but customizable confirmation modal with optional confirm and cancel callbacks.
-     * @deprecated
+     * @deprecated Use {@link UI.showConfirmationModal} instead.
      */
     showConfirmationModal(
         title: string,
@@ -620,62 +620,62 @@ export interface Legacy {
 
     /**
      * Shows a notice above Discord's chat layer. Returns a callback for closing the notice.
-     * @deprecated
+     * @deprecated Use {@link UI.showNotice} instead.
      */
     showNotice(content: string | Node, options?: NoticeOptions): CloseNotice;
 
     /**
      * Shows a toast towards the bottom of the screen.
-     * @deprecated
+     * @deprecated Use {@link UI.showToast} instead.
      */
     showToast(content: string, options?: ToastOptions): void;
 
     /**
      * Opens an Electron dialog.
-     * @deprecated
+     * @deprecated Use {@link UI.openDialog} instead.
      */
     openDialog(options: DialogSaveOptions): Promise<DialogSaveResult>;
     openDialog(options: DialogOpenOptions): Promise<DialogOpenResult>;
 
     /**
      * Loads previously stored data.
-     * @deprecated
+     * @deprecated Use {@link Data.load} instead.
      */
     loadData(pluginName: string, key: string): any;
 
     /**
      * Saves JSON-serializable data.
-     * @deprecated
+     * @deprecated Use {@link Data.save} instead.
      */
     saveData(pluginName: string, key: string, data: any): void;
 
     /**
      * Deletes a piece of stored data. This is different than saving `null` or `undefined`.
-     * @deprecated
+     * @deprecated Use {@link Data.delete} instead.
      */
     deleteData(pluginName: string, key: string): void;
 
     /**
      * Adds a `<style>` to the document with the given ID.
-     * @deprecated
+     * @deprecated Use {@link DOM.addStyle} instead.
      */
     injectCSS(id: string, styles: string): void;
 
     /**
      * Removes a `<style>` from the document corresponding to the given ID.
-     * @deprecated
+     * @deprecated Use {@link DOM.removeStyle} instead.
      */
     clearCSS(id: string): void;
 
     /**
      * Adds a listener for when the node is removed from the document body.
-     * @deprecated
+     * @deprecated Use {@link DOM.onRemoved} instead.
      */
     onRemoved(node: HTMLElement, callback: () => void): void;
 
     /**
      * Returns the internal React data (fiber) of a specific node.
-     * @deprecated
+     * @deprecated Use {@link ReactUtils.getInternalInstance} instead.
      */
     getInternalInstance(node: HTMLElement): Fiber | undefined;
 
