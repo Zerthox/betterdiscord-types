@@ -29,13 +29,13 @@ export interface Legacy {
 
     /**
      * Shows a generic but customizable modal.
-     * @deprecated Use {@link UI.alert} instead.
+     * @deprecated Use {@link BdApi.UI.alert} instead.
      */
     alert(title: string, children: React.ReactChild): void;
 
     /**
      * Shows a generic but customizable confirmation modal with optional confirm and cancel callbacks.
-     * @deprecated Use {@link UI.showConfirmationModal} instead.
+     * @deprecated Use {@link BdApi.UI.showConfirmationModal} instead.
      */
     showConfirmationModal(
         title: string,
@@ -45,62 +45,62 @@ export interface Legacy {
 
     /**
      * Shows a notice above Discord's chat layer. Returns a callback for closing the notice.
-     * @deprecated Use {@link UI.showNotice} instead.
+     * @deprecated Use {@link BdApi.UI.showNotice} instead.
      */
     showNotice(content: string | Node, options?: NoticeOptions): CloseNotice;
 
     /**
      * Shows a toast towards the bottom of the screen.
-     * @deprecated Use {@link UI.showToast} instead.
+     * @deprecated Use {@link BdApi.UI.showToast} instead.
      */
     showToast(content: string, options?: ToastOptions): void;
 
     /**
      * Opens an Electron dialog.
-     * @deprecated Use {@link UI.openDialog} instead.
+     * @deprecated Use {@link BdApi.UI.openDialog} instead.
      */
     openDialog(options: DialogSaveOptions): Promise<DialogSaveResult>;
     openDialog(options: DialogOpenOptions): Promise<DialogOpenResult>;
 
     /**
      * Loads previously stored data.
-     * @deprecated Use {@link Data.load} instead.
+     * @deprecated Use {@link BdApi.Data.load} instead.
      */
     loadData(pluginName: string, key: string): any;
 
     /**
      * Saves JSON-serializable data.
-     * @deprecated Use {@link Data.save} instead.
+     * @deprecated Use {@link BdApi.Data.save} instead.
      */
     saveData(pluginName: string, key: string, data: any): void;
 
     /**
      * Deletes a piece of stored data. This is different than saving `null` or `undefined`.
-     * @deprecated Use {@link Data.delete} instead.
+     * @deprecated Use {@link BdApi.Data.delete} instead.
      */
     deleteData(pluginName: string, key: string): void;
 
     /**
      * Adds a `<style>` to the document with the given ID.
-     * @deprecated Use {@link DOM.addStyle} instead.
+     * @deprecated Use {@link BdApi.DOM.addStyle} instead.
      */
     injectCSS(id: string, styles: string): void;
 
     /**
      * Removes a `<style>` from the document corresponding to the given ID.
-     * @deprecated Use {@link DOM.removeStyle} instead.
+     * @deprecated Use {@link BdApi.DOM.removeStyle} instead.
      */
     clearCSS(id: string): void;
 
     /**
      * Adds a listener for when the node is removed from the document body.
-     * @deprecated Use {@link DOM.onRemoved} instead.
+     * @deprecated Use {@link BdApi.DOM.onRemoved} instead.
      */
     onRemoved(node: HTMLElement, callback: () => void): void;
 
     /**
      * Returns the internal React data (fiber) of a specific node.
-     * @deprecated Use {@link ReactUtils.getInternalInstance} instead.
+     * @deprecated Use {@link BdApi.ReactUtils.getInternalInstance} instead.
      */
     getInternalInstance(node: HTMLElement): Fiber | undefined;
 
