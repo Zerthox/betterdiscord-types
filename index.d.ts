@@ -101,6 +101,9 @@ export interface Meta {
 
 /** BetterDiscord's global plugin API. */
 export interface BdApi extends Legacy {
+    new (): BdApi;
+    new (pluginName: string): BoundBdApi;
+
     /** BetterDiscord's version as string. */
     version: string;
 
@@ -139,4 +142,21 @@ export interface BdApi extends Legacy {
 
     /** Utility for getting internal webpack modules. */
     Webpack: Webpack;
+}
+
+type Bound<
+    T extends Record<B, (name: string, ...args: any) => any>,
+    B extends keyof T,
+> = {
+    [K in keyof T]: K extends B
+        ? T[K] extends (name: string, ...args: infer P) => infer R
+            ? (...args: P) => R
+            : never
+        : T[K];
+};
+
+export interface BoundBdApi extends Omit<BdApi, "Data" | "DOM" | "Patcher"> {
+    Data: Bound<Data, keyof Data>;
+    DOM: Bound<DOM, "addStyle" | "removeStyle">;
+    Patcher: Bound<Patcher, keyof Patcher>;
 }
