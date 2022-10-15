@@ -44,7 +44,7 @@ export interface ContextMenu extends ContextMenuComponents {
 
 export type ContextMenuCallback = (
     tree: React.ReactElement,
-) => React.ReactElement;
+) => React.ReactElement | void;
 
 export interface ContextMenuItemProps extends Record<string, any> {
     type?:
