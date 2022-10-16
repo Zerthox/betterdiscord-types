@@ -35,7 +35,7 @@ export interface ContextMenu extends ContextMenuComponents {
     open(
         event: MouseEvent,
         menuComponent: React.ComponentType<any>,
-        config: ContextMenuConfig,
+        config?: ContextMenuConfig,
     ): any;
 
     /** Closes the current opened context menu immediately. */
