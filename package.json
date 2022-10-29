@@ -1,13 +1,12 @@
 {
     "name": "betterdiscord-types",
-    "version": "1.8.3",
+    "version": "1.8.4",
     "description": "Type definitions for BetterDiscord",
     "author": "Zerthox",
     "license": "MIT",
     "scripts": {},
     "dependencies": {
         "@types/classnames": "^2.3.1",
-        "@types/electron": "^1.6.10",
         "@types/lodash": "^4.14.182",
         "@types/react": "^17.0.48",
         "@types/react-dom": "^17.0.17",

@@ -1,5 +1,3 @@
-import { FileFilter } from "electron";
-
 export interface UI {
     /** Shows a generic but customizable modal. */
     alert(title: string, content: React.ReactChild): void;
@@ -74,6 +72,11 @@ export interface DialogOptions {
     openFile?: boolean;
     multiSelections?: boolean;
     modal?: boolean;
+}
+
+export interface FileFilter {
+    name: string;
+    extensions: string[];
 }
 
 export interface DialogOpenOptions extends DialogOptions {
