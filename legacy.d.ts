@@ -31,7 +31,7 @@ export interface Legacy {
      * Shows a generic but customizable modal.
      * @deprecated Use {@link BdApi.UI.alert} instead.
      */
-    alert(title: string, children: React.ReactChild): void;
+    alert(title: string, children: React.ReactNode): void;
 
     /**
      * Shows a generic but customizable confirmation modal with optional confirm and cancel callbacks.
@@ -39,7 +39,7 @@ export interface Legacy {
      */
     showConfirmationModal(
         title: string,
-        content: React.ReactChild,
+        content: React.ReactNode,
         options?: ConfirmationModalOptions,
     ): void;
 

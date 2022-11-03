@@ -1,6 +1,6 @@
 export interface UI {
     /** Shows a generic but customizable modal. */
-    alert(title: string, content: React.ReactChild): void;
+    alert(title: string, content: React.ReactNode): void;
 
     /** Creates a tooltip to show on hover. */
     createTooltip(
@@ -12,7 +12,7 @@ export interface UI {
     /** Shows a generic but customizable confirmation modal with optional confirm and cancel callbacks. */
     showConfirmationModal(
         title: string,
-        content: React.ReactChild,
+        content: React.ReactNode,
         options?: ConfirmationModalOptions,
     ): string;
 
