@@ -1,3 +1,4 @@
+import React = require("react");
 import { Cancel } from ".";
 
 export interface ContextMenu extends ContextMenuComponents {
@@ -33,13 +34,13 @@ export interface ContextMenu extends ContextMenuComponents {
 
     /** Function that allows you to open an entire context menu. */
     open(
-        event: MouseEvent,
+        event: React.MouseEvent,
         menuComponent: React.ComponentType<any>,
         config?: ContextMenuConfig,
-    ): any;
+    ): void;
 
     /** Closes the current opened context menu immediately. */
-    close(): any;
+    close(): void;
 }
 
 export type ContextMenuCallback = (
