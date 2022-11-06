@@ -4,9 +4,9 @@ import { LoDashStatic } from "lodash";
 
 import { AddonAPI } from "./addonapi";
 import { ContextMenu } from "./contextmenu";
-import { Data } from "./data";
-import { DOM } from "./dom";
-import { Patcher } from "./patcher";
+import { Data, BoundData } from "./data";
+import { DOM, BoundDOM } from "./dom";
+import { Patcher, BoundPatcher } from "./patcher";
 import { ReactUtils } from "./reactutils";
 import { UI } from "./ui";
 import { Utils } from "./utils";
@@ -144,19 +144,24 @@ export interface BdApi extends Legacy {
     Webpack: Webpack;
 }
 
-type Bound<
-    T extends Record<B, (name: string, ...args: any) => any>,
+type OmitCaller<F> = F extends (caller: string, ...args: infer P) => infer R
+    ? (...args: P) => R
+    : never;
+
+export type Bound<
+    T extends Record<B, (caller: string, ...args: any) => any>,
     B extends keyof T,
 > = {
-    [K in keyof T]: K extends B
-        ? T[K] extends (name: string, ...args: infer P) => infer R
-            ? (...args: P) => R
-            : never
-        : T[K];
+    [K in keyof T]: K extends B ? OmitCaller<T[K]> : T[K];
 };
 
 export interface BoundBdApi extends Omit<BdApi, "Data" | "DOM" | "Patcher"> {
-    Data: Bound<Data, keyof Data>;
-    DOM: Bound<DOM, "addStyle" | "removeStyle">;
-    Patcher: Bound<Patcher, keyof Patcher>;
+    /** @see {@link BdApi.Data} */
+    Data: BoundData;
+
+    /** @see {@link BdApi.DOM} */
+    DOM: BoundDOM;
+
+    /** @see {@link BdApi.Patcher} */
+    Patcher: BoundPatcher;
 }

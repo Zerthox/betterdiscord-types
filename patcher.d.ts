@@ -1,4 +1,4 @@
-import { Cancel } from "./index";
+import { Bound, Cancel } from "./index";
 
 type FnOrAny<F> = F extends (...args: any) => any ? F : any;
 
@@ -41,6 +41,34 @@ export interface Patcher {
 
     /** Removes all patches created by the given caller. */
     unpatchAll(caller: string): void;
+}
+
+export interface BoundPatcher
+    extends Bound<
+        Omit<Patcher, "before" | "after" | "instead">,
+        "getPatchesByCaller" | "unpatchAll"
+    > {
+    /** @see {@link Patcher.before} */
+    before<M, K extends keyof M>(
+        moduleToPatch: M,
+        functionName: K,
+        callback: PatchBeforeCallback<FnOrAny<M[K]>>,
+    ): Cancel;
+
+    /** @see {@link Patcher.after} */
+    after<M, K extends keyof M>(
+        moduleToPatch: M,
+        functionName: K,
+        callback: PatchAfterCallback<FnOrAny<M[K]>>,
+    ): Cancel;
+
+    /** @see {@link Patcher.instead} */
+    instead<M, K extends keyof M>(
+        caller: string,
+        moduleToPatch: M,
+        functionName: K,
+        callback: PatchInsteadCallback<FnOrAny<M[K]>>,
+    ): Cancel;
 }
 
 export type PatchBeforeCallback<O extends (...args: any) => any> = (

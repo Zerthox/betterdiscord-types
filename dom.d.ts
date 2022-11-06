@@ -1,4 +1,4 @@
-import { Cancel } from ".";
+import { Cancel, Bound } from ".";
 
 export interface DOM {
     /** Current width of the user's screen. */
@@ -46,6 +46,8 @@ export interface DOM {
         fragment?: F,
     ): F extends true ? DocumentFragment : NodeList | HTMLElement;
 }
+
+export type BoundDOM = Bound<DOM, "addStyle" | "removeStyle">;
 
 export interface AnimateOptions {
     timing?: (timeFraction: number) => number;
