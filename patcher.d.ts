@@ -64,7 +64,6 @@ export interface BoundPatcher
 
     /** @see {@link Patcher.instead} */
     instead<M, K extends keyof M>(
-        caller: string,
         moduleToPatch: M,
         functionName: K,
         callback: PatchInsteadCallback<FnOrAny<M[K]>>,
