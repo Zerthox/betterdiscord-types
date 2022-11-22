@@ -46,7 +46,7 @@ export interface Plugin {
     stop(): void;
 
     /** Contents of the plugin's settings panel. */
-    getSettingsPanel?(): HTMLElement | JSX.Element;
+    getSettingsPanel?(): HTMLElement | JSX.Element | React.ComponentType;
 
     /**
      * Called on every mutation of the {@link document}.
