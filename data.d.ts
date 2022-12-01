@@ -1,14 +1,21 @@
 import { Bound } from ".";
 
-export interface Data {
+export interface Data<T extends Record<string, any> = Record<string, any>> {
     /** Saves JSON-serializable data. */
-    save(pluginName: string, key: string, data: any): void;
+    save<K extends keyof T>(pluginName: string, key: K, data: T[K]): void;
 
     /** Loads previously stored data. */
-    load(pluginName: string, key: string): any;
+    load<K extends keyof T>(pluginName: string, key: K): T[K];
 
     /** Deletes a piece of stored data. This is different than saving as `null` or `undefined`. */
-    delete(pluginName: string, key: string): void;
+    delete(pluginName: string, key: keyof T): void;
 }
 
-export type BoundData = Bound<Data, keyof Data>;
+export interface BoundData<T extends Record<string, any> = Record<string, any>>
+    extends Bound<Omit<Data<T>, "save" | "load">, "delete"> {
+    /** @see {@link Data.save} */
+    save<K extends keyof T>(key: K, data: T[K]): void;
+
+    /** @see {@link Data.load} */
+    load<K extends keyof T>(key: K): T[K];
+}

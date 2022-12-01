@@ -68,9 +68,10 @@ export type Bound<
     [K in keyof T]: K extends B ? OmitCaller<T[K]> : T[K];
 };
 
-export interface BoundBdApi extends Omit<BdApi, "Data" | "DOM" | "Patcher"> {
+export interface BoundBdApi<D extends Record<string, any> = Record<string, any>>
+    extends Omit<BdApi, "Data" | "DOM" | "Patcher"> {
     /** @see {@link BdApi.Data} */
-    Data: BoundData;
+    Data: BoundData<D>;
 
     /** @see {@link BdApi.DOM} */
     DOM: BoundDOM;
