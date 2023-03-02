@@ -1,4 +1,3 @@
-import React = require("react");
 import { Cancel } from ".";
 
 export interface ContextMenu extends ContextMenuComponents {

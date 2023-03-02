@@ -11,6 +11,7 @@ import { UI } from "./ui";
 import { Utils } from "./utils";
 import { Webpack } from "./webpack";
 import { Legacy } from "./legacy";
+import { Components } from "./components";
 
 /** BetterDiscord's global plugin API. */
 export interface BdApi extends Legacy {
@@ -55,6 +56,9 @@ export interface BdApi extends Legacy {
 
     /** Utility for getting internal webpack modules. */
     Webpack: Webpack;
+
+    /** React Components exposed for plugins. */
+    Components: Components;
 }
 
 type OmitCaller<F> = F extends (caller: string, ...args: infer P) => infer R
