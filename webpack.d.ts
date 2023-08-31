@@ -57,7 +57,7 @@ export interface Webpack {
     getStore(name: string): any;
 }
 
-type WithOptions<T, B extends BaseSearchOptions> = [...T[], B] | T[]
+export type WithOptions<T, B extends BaseSearchOptions> = [...T[], B] | T[]
 
 export type ModuleFilter = (
     exports: any,
