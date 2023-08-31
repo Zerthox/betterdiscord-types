@@ -36,26 +36,28 @@ export interface Webpack {
     getAllByRegex(regex: RegExp, options?: BaseSearchOptions): any[];
 
     /** Finds a single module using properties on its prototype. */
-    getByPrototypeKeys(...prototypes: string[]): any;
+    getByPrototypeKeys(...prototypes: WithOptions<string, BaseSearchOptions>): any;
 
     /** Finds all modules with a set of properties of its prototype. */
-    getAllByPrototypeKeys(...prototypes: string[]): any[];
+    getAllByPrototypeKeys(...prototypes: WithOptions<string, BaseSearchOptions>): any[];
 
     /** Finds a single module using its own properties. */
-    getByKeys(...props: string[]): any;
+    getByKeys(...props: WithOptions<string, BaseSearchOptions>): any;
 
     /** Finds all modules with a set of properties. */
-    getAllByKeys(...props: string[]): any[];
+    getAllByKeys(...props: WithOptions<string, BaseSearchOptions>): any[];
 
     /** Finds a single module using a set of strings. */
-    getByStrings(...strings: string[]): any;
+    getByStrings(...strings: WithOptions<string, BaseSearchOptions>): any;
 
     /** Finds all modules with a set of strings. */
-    getAllByStrings(...strings: string[]): any[];
+    getAllByStrings(...strings: WithOptions<string, BaseSearchOptions>): any[];
 
     /** Finds an internal Store module using the name. */
     getStore(name: string): any;
 }
+
+type WithOptions<T, B extends BaseSearchOptions> = [...T[], B] | T[]
 
 export type ModuleFilter = (
     exports: any,
