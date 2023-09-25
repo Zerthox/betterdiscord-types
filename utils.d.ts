@@ -1,4 +1,4 @@
-import * as classNames from "classnames";
+import classNames from "classnames";
 
 export interface Utils {
     /** Finds a value, subobject, or array from a tree that matches a specific filter. This is a DFS. */
