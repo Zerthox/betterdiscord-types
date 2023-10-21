@@ -63,14 +63,16 @@ export interface Webpack {
 
 export type WithOptions<T, B extends BaseSearchOptions> = [...T[], B] | T[];
 
+export interface Module {
+    id: number;
+    loaded: true;
+    exports: any;
+}
+
 export type ModuleFilter = (
     exports: any,
-    module: {
-        id: number;
-        loaded: true;
-        exports: any;
-    },
-    id: string,
+    module?: Module,
+    id?: string,
 ) => boolean;
 
 export interface BaseSearchOptions {
