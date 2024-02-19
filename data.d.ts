@@ -1,5 +1,3 @@
-import { Bound } from ".";
-
 export interface Data<T extends Record<string, any> = Record<string, any>> {
     /** Saves JSON-serializable data. */
     save<K extends keyof T>(pluginName: string, key: K, data: T[K]): void;
@@ -12,10 +10,13 @@ export interface Data<T extends Record<string, any> = Record<string, any>> {
 }
 
 export interface BoundData<T extends Record<string, any> = Record<string, any>>
-    extends Bound<Omit<Data<T>, "save" | "load">, "delete"> {
+    extends Data {
     /** @see {@link Data.save} */
     save<K extends keyof T>(key: K, data: T[K]): void;
 
     /** @see {@link Data.load} */
     load<K extends keyof T>(key: K): T[K];
+
+    /** @see {@link Data.delete} */
+    delete(key: keyof T): void;
 }
