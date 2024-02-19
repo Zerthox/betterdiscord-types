@@ -5,6 +5,7 @@ import { AddonAPI } from "./addonapi";
 import { ContextMenu } from "./contextmenu";
 import { Data, BoundData } from "./data";
 import { DOM, BoundDOM } from "./dom";
+import { Net } from "./net";
 import { Patcher, BoundPatcher } from "./patcher";
 import { ReactUtils } from "./reactutils";
 import { UI } from "./ui";
@@ -15,7 +16,10 @@ import { Components } from "./components";
 
 /** BetterDiscord's global plugin API. */
 export interface BdApi extends Legacy {
+    /** Returns the global plugin API. */
     new (): BdApi;
+
+    /** Creates a new plugin API instance bound to a specific caller name. */
     new <D extends Record<string, any>>(pluginName: string): BoundBdApi<D>;
 
     /** BetterDiscord's version as string. */
@@ -41,6 +45,9 @@ export interface BdApi extends Legacy {
 
     /** Utility for DOM manipulation. */
     DOM: DOM;
+
+    /** Utility for network requests. */
+    Net: Net;
 
     /** Utility for modifying existing functions. */
     Patcher: Patcher;

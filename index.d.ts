@@ -7,6 +7,7 @@ export * from "./bdapi";
 export * from "./contextmenu";
 export * from "./data";
 export * from "./dom";
+export * from "./net";
 export * from "./patcher";
 export * from "./plugin";
 export * from "./reactutils";
