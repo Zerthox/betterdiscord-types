@@ -88,15 +88,15 @@ export interface DialogSaveOptions extends DialogOptions {
 }
 
 export interface DialogResult {
-    cancelled: boolean;
+    canceled: boolean;
     filePath?: string;
     filePaths?: string[];
 }
 
-export interface DialogOpenResult extends Omit<DialogResult, "filePaths"> {
-    filePath: string;
+export interface DialogOpenResult extends Omit<DialogResult, "filePath"> {
+    filePaths: string[];
 }
 
-export interface DialogSaveResult extends Omit<DialogResult, "filePath"> {
-    filePaths: string[];
+export interface DialogSaveResult extends Omit<DialogResult, "filePaths"> {
+    filePath: string;
 }
