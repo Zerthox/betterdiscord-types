@@ -42,6 +42,7 @@ export interface ConfirmationModalOptions {
     cancelText?: string;
     onConfirm?: () => void;
     onCancel?: () => void;
+    onClose?: () => void;
 }
 
 export interface NoticeOptions {
