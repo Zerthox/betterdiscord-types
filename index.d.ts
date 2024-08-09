@@ -1,5 +1,3 @@
-import { LoDashStatic } from "lodash";
-
 import { BdApi } from "./bdapi";
 
 export * from "./addonapi";
@@ -22,12 +20,8 @@ declare global {
     /** BetterDiscord's global plugin API. */
     const BdApi: BdApi;
 
-    const _: LoDashStatic;
-
     interface Window {
         /** BetterDiscord's global plugin API. */
         BdApi: BdApi;
-
-        _: LoDashStatic;
     }
 }
