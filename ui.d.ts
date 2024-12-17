@@ -45,7 +45,53 @@ export interface TooltipOptions {
     disabled?: boolean;
 }
 
-export type Tooltip = any;
+interface Tooltip {
+    active: boolean;
+    disabled: boolean;
+    element: HTMLElement;
+    label: string | HTMLElement;
+    labelElement: HTMLElement;
+    node: HTMLElement;
+    preventFlip: boolean;
+    side: "top" | "right" | "bottom" | "left";
+    style: "primary" | "info" | "success" | "warn" | "danger";
+    tooltipElement: HTMLElement;
+
+    /** Container where the tooltip will be appended. */
+    get container(): HTMLElement;
+
+    /** Boolean representing if the tooltip will fit on screen above the element */
+    get canShowAbove(): boolean;
+
+    /** Boolean representing if the tooltip will fit on screen below the element */
+    get canShowBelow(): boolean;
+
+    /** Boolean representing if the tooltip will fit on screen to the left of the element */
+    get canShowLeft(): boolean;
+
+    /** Boolean representing if the tooltip will fit on screen to the right of the element */
+    get canShowRight(): boolean;
+
+    /** Hides the tooltip. Automatically called on mouseleave. */
+    hide(): void;
+
+    /** Shows the tooltip. Automatically called on mouseenter. Will attempt to flip if position was wrong. */
+    show(): void;
+
+    /** Force showing the tooltip above the node. */
+    showAbove(): void;
+    /** Force showing the tooltip below the node. */
+    showBelow(): void;
+
+    /** Force showing the tooltip to the left of the node. */
+    showLeft(): void;
+
+    /** Force showing the tooltip to the right of the node. */
+    showRight(): void;
+
+    centerHorizontally(): void;
+    centerVertically(): void;
+}
 
 export interface ConfirmationModalOptions {
     danger?: boolean;
@@ -134,7 +180,7 @@ export interface ChangelogModalOptions {
 type CategorySetting = Omit<
     SettingGroupProps,
     "onChange" | "onDrawerToggle" | "shown"
->;
+> & { type: "category" };
 
 export type SettingsPanelSetting = Setting | CategorySetting;
 

@@ -1,7 +1,10 @@
 type ValueOf<T> = T[keyof T];
 
 export interface Components {
-    Tooltip: React.ComponentType<any>;
+    /** Discord's tooltip component. */
+    Tooltip: React.ComponentClass<DiscordTooltipProps> & {
+        Colors: DiscordTooltipColors;
+    };
 
     /** Creates an error boundary with optional fallbacks and debug info. */
     ErrorBoundary: React.FunctionComponent<ErrorBoundaryProps>;
@@ -36,6 +39,43 @@ export interface Components {
     SwitchInput: React.FunctionComponent<SwitchInputProps>;
     TextInput: React.FunctionComponent<TextInputProps>;
     SettingGroup: React.FunctionComponent<SettingGroupProps>;
+}
+
+export interface DiscordTooltipColors {
+    PRIMARY: "primary";
+    NESTED: "nested";
+    BLACK: "black";
+    GREY: "grey";
+    BRAND: "brand";
+    GREEN: "green";
+    YELLOW: "yellow";
+    RED: "red";
+    PREMIUM: "premium";
+}
+
+export interface DiscordTooltipProps {
+    children: React.ReactNode;
+    text: React.ReactNode;
+    hideOnClick?: boolean;
+    align?: "center" | "top" | "bottom" | "left" | "right";
+    position?: "top" | "bottom" | "left" | "right";
+    color?: ValueOf<DiscordTooltipColors>;
+    forceOpen?: boolean;
+    spacing?: number;
+    shouldShow?: boolean;
+    allowOverflow?: boolean;
+    overflowOnly?: boolean;
+    delay?: number;
+    targetElementRef?: React.RefObject<HTMLElement>;
+    tooltipClassName?: string;
+    tooltipStyle?: React.CSSProperties;
+    tooltipContentClassName?: string;
+    clickableOnMobile?: boolean;
+    disableTooltipPointerEvents?: boolean;
+    onAnimationRest?: (...args: [any, any]) => void;
+    tooltipPointerClassName?: string;
+    onTooltipShow?: (props: DiscordTooltipProps) => void;
+    onTooltipHide?: (props: DiscordTooltipProps) => void;
 }
 
 export interface ErrorBoundaryProps {
@@ -243,7 +283,7 @@ export interface SwitchInputProps {
 
 export interface TextInputProps {
     value: string;
-    maxLength: number;
+    maxLength?: number;
     placeholder?: string;
     onKeyDown?: React.KeyboardEventHandler;
     onChange?: (value: string) => void;
