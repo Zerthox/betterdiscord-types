@@ -1,6 +1,6 @@
-import { Meta, PluginCallback, PluginClass } from "./plugin";
+import { Meta, PluginCallback, PluginClass, Plugin } from "./plugin";
 
-interface Addon extends Meta {
+interface AddonInfo extends Meta {
     added: number;
     filename: string;
     format: string;
@@ -10,16 +10,16 @@ interface Addon extends Meta {
     slug: string;
 }
 
-export interface Plugin extends Addon {
-    exports: PluginClass | PluginCallback;
+export interface PluginInfo extends AddonInfo {
+    exports: Plugin | PluginClass | PluginCallback;
     instance: any;
 }
 
-export interface Theme extends Addon {
+export interface ThemeInfo extends AddonInfo {
     css: string;
 }
 
-interface AddonAPI<T extends Addon> {
+interface AddonAPI<T extends AddonInfo> {
     folder: string;
     get(idOrFile: string): T;
     getAll(): T[];
@@ -30,5 +30,5 @@ interface AddonAPI<T extends Addon> {
     toggle(idOrFile: string): void;
 }
 
-export interface Plugins extends AddonAPI<Plugin> {}
-export interface Themes extends AddonAPI<Theme> {}
+export interface Plugins extends AddonAPI<PluginInfo> {}
+export interface Themes extends AddonAPI<ThemeInfo> {}
