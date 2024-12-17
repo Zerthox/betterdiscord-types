@@ -2,9 +2,11 @@ import { BdApi } from "./bdapi";
 
 export * from "./addonapi";
 export * from "./bdapi";
+export * from "./components";
 export * from "./contextmenu";
 export * from "./data";
 export * from "./dom";
+export * from "./logger";
 export * from "./net";
 export * from "./patcher";
 export * from "./plugin";

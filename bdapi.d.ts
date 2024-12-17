@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { AddonAPI } from "./addonapi";
+import { Plugins, Themes } from "./addonapi";
 import { ContextMenu } from "./contextmenu";
 import { Data, BoundData } from "./data";
 import { DOM, BoundDOM } from "./dom";
@@ -13,6 +13,7 @@ import { Utils } from "./utils";
 import { Webpack } from "./webpack";
 import { Legacy } from "./legacy";
 import { Components } from "./components";
+import { Logger, BoundLogger } from "./logger";
 
 /** BetterDiscord's global plugin API. */
 export interface BdApi extends Legacy {
@@ -32,10 +33,10 @@ export interface BdApi extends Legacy {
     ReactDOM: typeof ReactDOM;
 
     /** Interface to access plugins. */
-    Plugins: AddonAPI<any>;
+    Plugins: Plugins;
 
     /** Interface to access themes. */
-    Themes: AddonAPI<any>;
+    Themes: Themes;
 
     /** Utility for patching and creating context menus. */
     ContextMenu: ContextMenu;
@@ -66,21 +67,13 @@ export interface BdApi extends Legacy {
 
     /** React Components exposed for plugins. */
     Components: Components;
+
+    /** A logger for logging information. */
+    Logger: Logger;
 }
 
-type OmitCaller<F> = F extends (caller: string, ...args: infer P) => infer R
-    ? (...args: P) => R
-    : never;
-
-export type Bound<
-    T extends Record<B, (caller: string, ...args: any) => any>,
-    B extends keyof T,
-> = {
-    [K in keyof T]: K extends B ? OmitCaller<T[K]> : T[K];
-};
-
 export interface BoundBdApi<D extends Record<string, any> = Record<string, any>>
-    extends Omit<BdApi, "Data" | "DOM" | "Patcher"> {
+    extends Omit<BdApi, "Data" | "DOM" | "Patcher" | "Logger"> {
     /** @see {@link BdApi.Data} */
     Data: BoundData<D>;
 
@@ -89,4 +82,7 @@ export interface BoundBdApi<D extends Record<string, any> = Record<string, any>>
 
     /** @see {@link BdApi.Patcher} */
     Patcher: BoundPatcher;
+
+    /** @see {@link BdApi.Logger} */
+    Logger: BoundLogger;
 }
