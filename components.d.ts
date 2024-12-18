@@ -54,7 +54,7 @@ export interface DiscordTooltipColors {
 }
 
 export interface DiscordTooltipProps {
-    children: React.ReactNode;
+    children: React.FunctionComponent<any>;
     text: React.ReactNode;
     hideOnClick?: boolean;
     align?: "center" | "top" | "bottom" | "left" | "right";
