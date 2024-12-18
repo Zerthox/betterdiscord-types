@@ -9,56 +9,58 @@ export interface Webpack {
      * Searches for a module by value, returns module & matched key.
      * Useful in combination with patching.
      */
-    getWithKey(filter: ModuleFilter, options?: WithKeyOptions): [any, string];
+    getWithKey<T>(
+        filter: ModuleFilter,
+        options?: WithKeyOptions,
+    ): WithKeyResult<T>;
 
     /** Finds a module using a filter function. */
-    getModule<F extends boolean>(
-        filter: ModuleFilter,
-        options?: SearchOptions<F>,
-    ): ModuleResult<F>;
+    getModule<T>(filter: ModuleFilter, options?: SearchOptions<true>): T;
+    getModule<T>(filter: ModuleFilter, options?: SearchOptions<false>): T[];
+    getModule<T>(filter: ModuleFilter, options?: SearchOptions<boolean>): T;
 
     /** Finds all modules matching a filter function. */
-    getModules(filter: ModuleFilter, options?: BaseSearchOptions): any[];
+    getModules<T>(filter: ModuleFilter, options?: BaseSearchOptions): T[];
 
     /** Finds multiple modules using multiple filters. */
     getBulk<Q extends ModuleQuery[]>(...queries: Q): ModuleBulkResult<Q>;
 
     /** Attempts to find a lazy loaded module, resolving when it is loaded. */
-    waitForModule(
+    waitForModule<T>(
         filter: ModuleFilter,
         options?: WaitForModuleOptions,
-    ): Promise<any>;
+    ): Promise<T>;
 
     /** Finds a module using its code. */
-    getByRegex(regex: RegExp, options?: BaseSearchOptions): any;
+    getByRegex<T>(regex: RegExp, options?: BaseSearchOptions): T;
 
     /** Finds all modules using its code. */
-    getAllByRegex(regex: RegExp, options?: BaseSearchOptions): any[];
+    getAllByRegex<T>(regex: RegExp, options?: BaseSearchOptions): T[];
 
     /** Finds a single module using properties on its prototype. */
-    getByPrototypeKeys(
+    getByPrototypeKeys<T>(
         ...prototypes: WithOptions<string, BaseSearchOptions>
-    ): any;
+    ): T;
 
     /** Finds all modules with a set of properties of its prototype. */
-    getAllByPrototypeKeys(
+    getAllByPrototypeKeys<T>(
         ...prototypes: WithOptions<string, BaseSearchOptions>
-    ): any[];
+    ): T[];
 
     /** Finds a single module using its own properties. */
-    getByKeys(...props: WithOptions<string, BaseSearchOptions>): any;
+    getByKeys<T>(...props: WithOptions<string, BaseSearchOptions>): T;
 
     /** Finds all modules with a set of properties. */
-    getAllByKeys(...props: WithOptions<string, BaseSearchOptions>): any[];
+    getAllByKeys<T>(...props: WithOptions<string, BaseSearchOptions>): T[];
 
     /** Finds a single module using a set of strings. */
-    getByStrings(...strings: WithOptions<string, BaseSearchOptions>): any;
+    getByStrings<T>(...strings: WithOptions<string, BaseSearchOptions>): T;
 
     /** Finds all modules with a set of strings. */
-    getAllByStrings(...strings: WithOptions<string, BaseSearchOptions>): any[];
+    getAllByStrings<T>(...strings: WithOptions<string, BaseSearchOptions>): T[];
 
     /** Finds an internal Store module using the name. */
-    getStore(name: string): any;
+    getStore<T>(name: string): T;
 }
 
 export type WithOptions<T, B extends BaseSearchOptions> = [...T[], B] | T[];
@@ -80,11 +82,15 @@ export interface BaseSearchOptions {
     searchExports?: boolean;
 }
 
-export type ModuleResult<F extends boolean> = F extends false ? any[] : any;
-
 export interface WithKeyOptions extends BaseSearchOptions {
     target?: any;
 }
+
+export type ModuleKey = string & {
+    __MODULE_KEY_DUMMY_PROP: undefined;
+};
+
+export type WithKeyResult<T> = [{ [x: ModuleKey]: T }, ModuleKey];
 
 export interface SearchOptions<F extends boolean> extends BaseSearchOptions {
     first?: F;
@@ -95,7 +101,7 @@ export interface ModuleQuery extends SearchOptions<boolean> {
 }
 
 export type ModuleBulkResult<Q extends ModuleQuery[]> = {
-    [I in keyof Q]: ModuleResult<Q[I]["first"]>;
+    [I in keyof Q]: Q[I]["first"] extends true ? any : any[];
 };
 
 export interface WaitForModuleOptions extends BaseSearchOptions {
