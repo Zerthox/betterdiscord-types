@@ -2,80 +2,43 @@ type ValueOf<T> = T[keyof T];
 
 export interface Components {
     /** Discord's tooltip component. */
-    Tooltip: React.ComponentClass<DiscordTooltipProps> & {
-        Colors: DiscordTooltipColors;
+    Tooltip: React.ComponentType<any> & {
+        Colors: any;
     };
 
     /** Creates an error boundary with optional fallbacks and debug info. */
-    ErrorBoundary: React.FunctionComponent<ErrorBoundaryProps>;
+    ErrorBoundary: React.ComponentType<ErrorBoundaryProps>;
 
-    Text: React.FunctionComponent<TextProps> & {
+    Text: React.ComponentType<TextProps> & {
         Colors: TextColors;
         Sizes: TextSizes;
     };
 
-    Flex: React.FunctionComponent<FlexProps> & {
-        Child: React.FunctionComponent<FlexProps>;
+    Flex: React.ComponentType<FlexProps> & {
+        Child: React.ComponentType<FlexProps>;
         Direction: FlexDirection;
         Justify: FlexJustify;
         Align: FlexAlign;
         Wrap: FlexWrap;
     };
 
-    Button: React.FunctionComponent<ButtonProps> & {
+    Button: React.ComponentType<ButtonProps> & {
         Looks: ButtonLooks;
         Colors: ButtonColors;
         Sizes: ButtonSizes;
     };
 
-    ColorInput: React.FunctionComponent<ColorInputProps>;
-    DropdownInput: React.FunctionComponent<DropdownInputProps>;
-    SettingItem: React.FunctionComponent<SettingItemProps>;
-    KeybindInput: React.FunctionComponent<KeybindInputProps>;
-    NumberInput: React.FunctionComponent<NumberInputProps>;
-    RadioInput: React.FunctionComponent<RadioInputProps>;
-    SearchInput: React.FunctionComponent<SearchInputProps>;
-    SliderInput: React.FunctionComponent<SliderInputProps>;
-    SwitchInput: React.FunctionComponent<SwitchInputProps>;
-    TextInput: React.FunctionComponent<TextInputProps>;
-    SettingGroup: React.FunctionComponent<SettingGroupProps>;
-}
-
-export interface DiscordTooltipColors {
-    PRIMARY: "primary";
-    NESTED: "nested";
-    BLACK: "black";
-    GREY: "grey";
-    BRAND: "brand";
-    GREEN: "green";
-    YELLOW: "yellow";
-    RED: "red";
-    PREMIUM: "premium";
-}
-
-export interface DiscordTooltipProps {
-    children: React.FunctionComponent<any>;
-    text: React.ReactNode;
-    hideOnClick?: boolean;
-    align?: "center" | "top" | "bottom" | "left" | "right";
-    position?: "top" | "bottom" | "left" | "right";
-    color?: ValueOf<DiscordTooltipColors>;
-    forceOpen?: boolean;
-    spacing?: number;
-    shouldShow?: boolean;
-    allowOverflow?: boolean;
-    overflowOnly?: boolean;
-    delay?: number;
-    targetElementRef?: React.RefObject<HTMLElement>;
-    tooltipClassName?: string;
-    tooltipStyle?: React.CSSProperties;
-    tooltipContentClassName?: string;
-    clickableOnMobile?: boolean;
-    disableTooltipPointerEvents?: boolean;
-    onAnimationRest?: (...args: [any, any]) => void;
-    tooltipPointerClassName?: string;
-    onTooltipShow?: (props: DiscordTooltipProps) => void;
-    onTooltipHide?: (props: DiscordTooltipProps) => void;
+    ColorInput: React.ComponentType<ColorInputProps>;
+    DropdownInput: React.ComponentType<DropdownInputProps>;
+    SettingItem: React.ComponentType<SettingItemProps>;
+    KeybindInput: React.ComponentType<KeybindInputProps>;
+    NumberInput: React.ComponentType<NumberInputProps>;
+    RadioInput: React.ComponentType<RadioInputProps>;
+    SearchInput: React.ComponentType<SearchInputProps>;
+    SliderInput: React.ComponentType<SliderInputProps>;
+    SwitchInput: React.ComponentType<SwitchInputProps>;
+    TextInput: React.ComponentType<TextInputProps>;
+    SettingGroup: React.ComponentType<SettingGroupProps>;
 }
 
 export interface ErrorBoundaryProps {

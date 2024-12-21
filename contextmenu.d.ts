@@ -73,11 +73,11 @@ export interface ContextMenuConfig {
 }
 
 export interface ContextMenuComponents {
-    Menu: React.FunctionComponent<any>;
-    Group: React.FunctionComponent<any>;
-    Item: React.FunctionComponent<any>;
-    Separator: React.FunctionComponent<{}>;
-    CheckboxItem: React.FunctionComponent<any>;
-    ControlItem: React.FunctionComponent<any>;
-    RadioItem: React.FunctionComponent<any>;
+    Menu: React.ComponentType<any>;
+    Group: React.ComponentType<any>;
+    Item: React.ComponentType<any>;
+    Separator: React.ComponentType<any>;
+    CheckboxItem: React.ComponentType<any>;
+    ControlItem: React.ComponentType<any>;
+    RadioItem: React.ComponentType<any>;
 }

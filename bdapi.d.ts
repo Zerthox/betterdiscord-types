@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Plugins, Themes } from "./addonapi";
+import { AddonAPI } from "./addonapi";
 import { ContextMenu } from "./contextmenu";
 import { Data, BoundData } from "./data";
 import { DOM, BoundDOM } from "./dom";
@@ -33,10 +33,10 @@ export interface BdApi extends Legacy {
     ReactDOM: typeof ReactDOM;
 
     /** Interface to access plugins. */
-    Plugins: Plugins;
+    Plugins: AddonAPI<any>;
 
     /** Interface to access themes. */
-    Themes: Themes;
+    Themes: AddonAPI<any>;
 
     /** Utility for patching and creating context menus. */
     ContextMenu: ContextMenu;
