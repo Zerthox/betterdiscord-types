@@ -33,6 +33,12 @@ export interface Utils {
      * When given an object they keys are added as the classnames if the value is truthy.
      */
     className: typeof classNames;
+
+    /** Gets a nested value (if it exists) of an object safely. */
+    getNestedValue(obj: Record<string, any>, keyPath: string): any;
+
+    /** Compares versions according to semantic versioning.  */
+    semverCompare(currentVersion: string, newVersion: string): -1 | 0 | 1;
 }
 
 export interface FindInTreeOptions {
