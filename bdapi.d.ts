@@ -1,19 +1,19 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import type * as React from "react";
+import type * as ReactDOM from "react-dom";
 
-import { AddonAPI } from "./addonapi";
-import { ContextMenu } from "./contextmenu";
-import { Data, BoundData } from "./data";
-import { DOM, BoundDOM } from "./dom";
-import { Net } from "./net";
-import { Patcher, BoundPatcher } from "./patcher";
-import { ReactUtils } from "./reactutils";
-import { UI } from "./ui";
-import { Utils } from "./utils";
-import { Webpack } from "./webpack";
-import { Legacy } from "./legacy";
-import { Components } from "./components";
-import { Logger, BoundLogger } from "./logger";
+import type { AddonAPI } from "./addonapi.d.ts";
+import type { ContextMenu } from "./contextmenu.d.ts";
+import type { Data, BoundData } from "./data.d.ts";
+import type { DOM, BoundDOM } from "./dom.d.ts";
+import type { Net } from "./net.d.ts";
+import type { Patcher, BoundPatcher } from "./patcher.d.ts";
+import type { ReactUtils } from "./reactutils.d.ts";
+import type { UI } from "./ui.d.ts";
+import type { Utils } from "./utils.d.ts";
+import type { Webpack } from "./webpack.d.ts";
+import type { Legacy } from "./legacy.d.ts";
+import type { Components } from "./components.d.ts";
+import type { Logger, BoundLogger } from "./logger.d.ts";
 
 /** BetterDiscord's global plugin API. */
 export interface BdApi extends Legacy {

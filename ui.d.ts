@@ -1,4 +1,4 @@
-import { Setting, SettingGroupProps } from "./components";
+import type { Setting, SettingGroupProps } from "./components.d.ts";
 
 export interface UI {
     /** Shows a generic but customizable modal. */

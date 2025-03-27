@@ -1,4 +1,4 @@
-import { Cancel } from ".";
+import type { Cancel } from "./index.d.ts";
 
 export interface ContextMenu extends ContextMenuComponents {
     /**

@@ -1,8 +1,8 @@
-import { Fiber } from "react-reconciler";
+import type { Fiber } from "react-reconciler";
 
-import { Cancel } from ".";
-import { ModuleFilter } from "./webpack";
-import {
+import type { Cancel } from "./index.d.ts";
+import type { ModuleFilter } from "./webpack.d.ts";
+import type {
     CloseNotice,
     ConfirmationModalOptions,
     DialogOpenOptions,
@@ -11,7 +11,7 @@ import {
     DialogSaveResult,
     NoticeOptions,
     ToastOptions,
-} from "./ui";
+} from "./ui.d.ts";
 
 /** @deprecated */
 export interface Legacy {

@@ -1,4 +1,4 @@
-import { Fiber } from "react-reconciler";
+import type { Fiber } from "react-reconciler";
 
 export interface ReactUtils {
     get rootInstance(): any;

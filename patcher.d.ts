@@ -1,4 +1,4 @@
-import { Cancel } from "./index";
+import type { Cancel } from "./index.d.ts";
 
 type FnOrAny<F> = F extends (...args: any) => any ? F : any;
 
