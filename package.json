@@ -1,13 +1,17 @@
 {
     "name": "betterdiscord-types",
-    "version": "1.12.1",
+    "version": "1.12.2",
     "description": "Type definitions for BetterDiscord",
     "author": "Zerthox",
     "license": "MIT",
-    "scripts": {},
+    "scripts": {
+        "check": "tsc --noemit",
+        "format-check": "prettier --check .",
+        "format-fix": "prettier --write ."
+    },
     "dependencies": {
         "@types/react-reconciler": "^0.32.0",
-        "classnames": "^2.5.1"
+        "clsx": "^2.1.1"
     },
     "peerDependencies": {
         "@types/react": "^19.0.0",

@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 
 export interface Utils {
     /** Finds a value, subobject, or array from a tree that matches a specific filter. This is a DFS. */
@@ -32,7 +32,7 @@ export interface Utils {
      * When given an array all values from the array are added to the list.
      * When given an object they keys are added as the classnames if the value is truthy.
      */
-    className: typeof classNames;
+    className: typeof clsx;
 
     /** Gets a nested value (if it exists) of an object safely. */
     getNestedValue(obj: Record<string, any>, keyPath: string): any;
