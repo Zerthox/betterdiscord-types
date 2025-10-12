@@ -1,4 +1,4 @@
-import { Setting, SettingGroupProps } from "./components";
+import { Setting, SettingGroupProps } from "./components/settinggroup";
 
 export interface UI {
     /** Shows a generic but customizable modal. */
@@ -45,7 +45,7 @@ export interface TooltipOptions {
     disabled?: boolean;
 }
 
-interface Tooltip {
+export interface Tooltip {
     active: boolean;
     disabled: boolean;
     element: HTMLElement;
