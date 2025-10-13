@@ -8,7 +8,7 @@ export interface RadioOption<T> {
     desc?: string;
 }
 
-export interface RadioInputProps<T = unknown> {
+export interface RadioInputProps<T> {
     value: T;
     options: RadioOption<T>[];
     name?: string;
@@ -16,4 +16,4 @@ export interface RadioInputProps<T = unknown> {
     onChange?: (value: T) => void;
 }
 
-export type RadioInput<T = unknown> = React.ComponentType<RadioInputProps<T>>;
+export type RadioInput<T> = React.FunctionComponent<RadioInputProps<T>>;

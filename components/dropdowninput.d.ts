@@ -6,7 +6,7 @@ export interface DropdownOption<T> {
 
 export type DropdownStyle = "default" | "transparent";
 
-export interface DropdownInputProps<T = unknown> {
+export interface DropdownInputProps<T> {
     value: T;
     options: DropdownOption<T>[];
     style?: DropdownStyle;
@@ -14,6 +14,4 @@ export interface DropdownInputProps<T = unknown> {
     onChange?: (value: T) => void;
 }
 
-export type DropdownInput<T = unknown> = React.ComponentType<
-    DropdownInputProps<T>
->;
+export type DropdownInput<T> = React.FunctionComponent<DropdownInputProps<T>>;

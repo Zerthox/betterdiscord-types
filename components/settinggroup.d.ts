@@ -8,21 +8,12 @@ import { SliderInputProps } from "./sliderinput";
 import { SwitchInputProps } from "./switchinput";
 import { TextInputProps } from "./textinput";
 
-export interface BaseSetting {
-    type: string;
-    id: string;
-    name: string;
-    note: string;
-    inline?: boolean;
+type SettingType<T extends string, P> = P & {
+    type: T;
     hidden?: boolean;
-}
+};
 
-type SettingType<T extends string, P> = { type: T } & BaseSetting & P;
-
-export type DropdownSetting<T = unknown> = SettingType<
-    "dropdown",
-    DropdownInputProps<T>
->;
+export type DropdownSetting<T> = SettingType<"dropdown", DropdownInputProps<T>>;
 
 export type NumberSetting = SettingType<"number", NumberInputProps>;
 
@@ -34,10 +25,7 @@ export type FileSetting = SettingType<"file", FileInputProps>;
 
 export type SliderSetting = SettingType<"slider", SliderInputProps>;
 
-export type RadioSetting<T = unknown> = SettingType<
-    "radio",
-    RadioInputProps<T>
->;
+export type RadioSetting<T> = SettingType<"radio", RadioInputProps<T>>;
 
 export type KeybindSetting = SettingType<"keybind", KeybindInputProps>;
 
@@ -50,21 +38,21 @@ export interface CustomSettingProps {
 }
 
 export type Setting =
-    | DropdownSetting
+    | DropdownSetting<any>
     | NumberSetting
     | SwitchSetting
     | TextSetting
     | FileSetting
     | SliderSetting
-    | RadioSetting
+    | RadioSetting<any>
     | KeybindSetting
     | ColorSetting
     | CustomSetting;
 
 export interface SettingGroupProps {
     id: string;
-    name?: string;
     settings: Setting[];
+    name?: string;
     shown?: boolean;
     showDivider?: boolean;
     collapsible?: boolean;

@@ -1,11 +1,11 @@
 import { Button } from "./button";
 import { ColorInput } from "./colorinput";
-import { DropdownInput } from "./dropdowninput";
+import { DropdownInputProps } from "./dropdowninput";
 import { ErrorBoundary } from "./errorboundary";
 import { Flex } from "./flex";
 import { KeybindInput } from "./keybindinput";
 import { NumberInput } from "./numberinput";
-import { RadioInput } from "./radioinput";
+import { RadioInputProps } from "./radioinput";
 import { SearchInput } from "./searchinput";
 import { SettingGroup } from "./settinggroup";
 import { SettingItem } from "./settingitem";
@@ -42,10 +42,10 @@ export interface Components {
     ErrorBoundary: ErrorBoundary;
 
     ColorInput: ColorInput;
-    DropdownInput: DropdownInput;
+    DropdownInput: <T>(props: DropdownInputProps<T>) => React.ReactNode;
     KeybindInput: KeybindInput;
     NumberInput: NumberInput;
-    RadioInput: RadioInput;
+    RadioInput: <T>(props: RadioInputProps<T>) => React.ReactNode;
     SearchInput: SearchInput;
     SliderInput: SliderInput;
     SwitchInput: SwitchInput;
