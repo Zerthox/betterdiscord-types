@@ -9,8 +9,9 @@ export interface Data<T extends Record<string, any> = Record<string, any>> {
     delete(pluginName: string, key: keyof T): void;
 }
 
-export interface BoundData<T extends Record<string, any> = Record<string, any>>
-    extends Data {
+export interface BoundData<
+    T extends Record<string, any> = Record<string, any>,
+> extends Data {
     /** @see {@link Data.save} */
     save<K extends keyof T>(key: K, data: T[K]): void;
 

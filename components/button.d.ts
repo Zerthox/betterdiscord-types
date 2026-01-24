@@ -29,8 +29,7 @@ export const enum ButtonSizes {
     ICON = "bd-button-icon",
 }
 
-export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     type?: ButtonTypes;
     look?: ButtonLooks;
     color?: ButtonColors;

@@ -72,8 +72,9 @@ export interface BdApi extends Legacy {
     Logger: Logger;
 }
 
-export interface BoundBdApi<D extends Record<string, any> = Record<string, any>>
-    extends Omit<BdApi, "Data" | "DOM" | "Patcher" | "Logger"> {
+export interface BoundBdApi<
+    D extends Record<string, any> = Record<string, any>,
+> extends Omit<BdApi, "Data" | "DOM" | "Patcher" | "Logger"> {
     /** @see {@link BdApi.Data} */
     Data: BoundData<D>;
 

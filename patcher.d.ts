@@ -43,8 +43,10 @@ export interface Patcher {
     unpatchAll(caller: string): void;
 }
 
-export interface BoundPatcher
-    extends Omit<Patcher, "before" | "after" | "instead"> {
+export interface BoundPatcher extends Omit<
+    Patcher,
+    "before" | "after" | "instead"
+> {
     /** @see {@link Patcher.before} */
     before<M, K extends keyof M>(
         moduleToPatch: M,
