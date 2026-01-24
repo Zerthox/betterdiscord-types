@@ -1,6 +1,6 @@
 export interface DropdownOption<T> {
     value: T;
-    label: string;
+    label: React.ReactNode;
     id?: string;
 }
 
