@@ -23,8 +23,8 @@ export const enum TextSizes {
     SIZE_32 = "bd-text-32",
 }
 
-export interface TextProps<T = HTMLDivElement> extends React.HTMLAttributes<T> {
-    tag?: T;
+export type TextProps<P = React.HTMLAttributes<HTMLElement>> = P & {
+    tag?: React.ElementType<P>;
     color?: TextColors;
     size?: TextSizes;
     selectable?: boolean;
@@ -32,7 +32,7 @@ export interface TextProps<T = HTMLDivElement> extends React.HTMLAttributes<T> {
     className?: string;
     style?: React.CSSProperties;
     children?: React.ReactNode;
-}
+};
 
 export type Text = React.ComponentType<TextProps> & {
     Colors: typeof TextColors;
