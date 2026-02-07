@@ -26,7 +26,9 @@ export interface Webpack {
     getBulk<Q extends ModuleQuery[]>(...queries: Q): ModuleBulkResult<Q>;
 
     /** Finds multiple modules using multiple filters on an object. */
-    getBulkKeyed<T extends Record<string, ModuleQuery>>(queries: T): ModuleBulkKeyedResult<T>;
+    getBulkKeyed<T extends Record<string, ModuleQuery>>(
+        queries: T,
+    ): ModuleBulkKeyedResult<T>;
 
     /** Attempts to find a lazy loaded module, resolving when it is loaded. */
     waitForModule<T>(
@@ -132,7 +134,7 @@ export type ModuleBulkResult<Q extends ModuleQuery[]> = {
 
 export type ModuleBulkKeyedResult<T extends Record<string, ModuleQuery>> = {
     [K in keyof T]: T[K]["all"] extends true ? any[] : any;
-}
+};
 
 export interface WaitForModuleOptions extends BaseSearchOptions {
     signal?: AbortSignal;
