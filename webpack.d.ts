@@ -25,6 +25,9 @@ export interface Webpack {
     /** Finds multiple modules using multiple filters. */
     getBulk<Q extends ModuleQuery[]>(...queries: Q): ModuleBulkResult<Q>;
 
+    /** Finds multiple modules using multiple filters on an object. */
+    getBulkKeyed<T extends Record<string, ModuleQuery>>(queries: T): ModuleBulkKeyedResult<T>;
+
     /** Attempts to find a lazy loaded module, resolving when it is loaded. */
     waitForModule<T>(
         filter: ModuleFilter,
@@ -61,6 +64,16 @@ export interface Webpack {
 
     /** Finds an internal Store module using the name. */
     getStore<T>(name: string): T;
+
+    /** Finds a module with the given id. */
+    getById<T>(id: PropertyKey): T;
+
+    /** Finds a module with a filter, source, regex, or id, and returns an object with fixed keys that correspond to a mangled key on the module. */
+    getMangled<T extends object>(
+        filter: ModuleFilter | string | RegExp | number,
+        mappers: Record<keyof T, ExportedOnlyFilter>,
+        options?: BaseSearchOptions,
+    ): T;
 }
 
 export type WithOptions<T, B extends BaseSearchOptions> = [...T[], B] | T[];
@@ -77,9 +90,14 @@ export type ModuleFilter = (
     id?: string,
 ) => boolean;
 
+export type ExportedOnlyFilter = (exports: any) => boolean;
+
 export interface BaseSearchOptions {
     defaultExport?: boolean;
     searchExports?: boolean;
+    fatal?: boolean;
+    firstId?: PropertyKey;
+    cacheId?: string | null;
 }
 
 export interface WithKeyOptions extends BaseSearchOptions {
@@ -96,25 +114,25 @@ export interface SearchOptions<F extends boolean> extends BaseSearchOptions {
     first?: F;
 }
 
-export interface ModuleQuery extends SearchOptions<boolean> {
+export interface ModuleQuery extends BaseSearchOptions {
     filter: ModuleFilter;
+    all?: boolean;
+    map?: Record<string, ExportedOnlyFilter>;
 }
 
 export type ModuleBulkResult<Q extends ModuleQuery[]> = {
-    [I in keyof Q]: Q[I]["first"] extends true ? any : any[];
+    [I in keyof Q]: Q[I]["all"] extends true ? any[] : any;
 };
+
+export type ModuleBulkKeyedResult<T extends Record<string, ModuleQuery>> = {
+    [K in keyof T]: T[K]["all"] extends true ? any[] : any;
+}
 
 export interface WaitForModuleOptions extends BaseSearchOptions {
     signal?: AbortSignal;
 }
 
 export interface Filters {
-    /**
-     * Generates a filter checking for a given set of property names.
-     * @deprecated Use {@link Filters.byKeys} instead.
-     */
-    byProps(...props: string[]): ModuleFilter;
-
     /** Generates a filter checking for a given set of property names. */
     byKeys(...keys: string[]): ModuleFilter;
 
@@ -141,4 +159,7 @@ export interface Filters {
 
     /** Generates a combined filter from multiple filters. */
     combine(...filters: ModuleFilter[]): ModuleFilter;
+
+    /** Inverts a module filter. */
+    not(filter: ModuleFilter): ModuleFilter;
 }
