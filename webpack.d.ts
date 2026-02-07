@@ -62,6 +62,12 @@ export interface Webpack {
     /** Finds all modules with a set of strings. */
     getAllByStrings<T>(...strings: WithOptions<string, BaseSearchOptions>): T[];
 
+    /** Finds a single module with a set of strings in its source code. */
+    getBySource<T>(...strings: WithOptions<string, BaseSearchOptions>): T;
+
+    /** Finds all modules with a set of strings in their source code. */
+    getAllBySource<T>(...strings: WithOptions<string, BaseSearchOptions>): T;
+
     /** Finds an internal Store module using the name. */
     getStore<T>(name: string): T;
 
@@ -156,6 +162,9 @@ export interface Filters {
 
     /** Generates a filter checking for a specific internal Store name. */
     byStoreName(name: string): ModuleFilter;
+
+    /** Generates a filter checking the strings in the source of a module */
+    bySource(...strings: string[]): ModuleFilter;
 
     /** Generates a combined filter from multiple filters. */
     combine(...filters: ModuleFilter[]): ModuleFilter;
