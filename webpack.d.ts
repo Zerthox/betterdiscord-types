@@ -103,6 +103,8 @@ export type ExportedOnlyFilter = (exports: any) => boolean;
 export interface BaseSearchOptions {
     defaultExport?: boolean;
     searchExports?: boolean;
+    searchDefault?: boolean;
+    raw?: boolean;
     fatal?: boolean;
     firstId?: PropertyKey;
     cacheId?: string | null;
