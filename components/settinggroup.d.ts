@@ -10,6 +10,15 @@ import { TextInputProps } from "./textinput";
 
 type SettingType<T extends string, P> = P & {
     type: T;
+    id: string;
+    value: unknown;
+    name?: string;
+    note?: string;
+    disabled?: boolean;
+    enableWith?: string;
+    disableWith?: string;
+    defaultValue?: unknown;
+    inline?: boolean;
     hidden?: boolean;
 };
 
