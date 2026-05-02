@@ -1,6 +1,6 @@
 {
     "name": "betterdiscord-types",
-    "version": "1.12.4",
+    "version": "1.13.0",
     "description": "Type definitions for BetterDiscord",
     "author": "Zerthox",
     "license": "MIT",
@@ -19,6 +19,6 @@
     },
     "devDependencies": {
         "prettier": "^3.0.3",
-        "typescript": "^5.0.4"
+        "typescript": "^6.0.3"
     }
 }
