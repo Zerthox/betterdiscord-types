@@ -14,7 +14,6 @@ export * from "./reactutils";
 export * from "./ui";
 export * from "./utils";
 export * from "./webpack";
-export * from "./legacy";
 
 export type Cancel = () => void;
 

@@ -11,12 +11,11 @@ import { ReactUtils } from "./reactutils";
 import { UI } from "./ui";
 import { Utils } from "./utils";
 import { Webpack } from "./webpack";
-import { Legacy } from "./legacy";
 import { Components } from "./components";
 import { Logger, BoundLogger } from "./logger";
 
 /** BetterDiscord's global plugin API. */
-export interface BdApi extends Legacy {
+export interface BdApi {
     /** Returns the global plugin API. */
     new (): BdApi;
 
