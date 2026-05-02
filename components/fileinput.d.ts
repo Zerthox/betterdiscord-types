@@ -11,12 +11,18 @@ export interface FileInputActions {
     clear?: () => void;
 }
 
-export interface SingleFileInputProps extends BaseFileInputProps {
+export interface SingleFileInputProps extends Omit<
+    BaseFileInputProps,
+    "onChange"
+> {
     multiple: true;
     onChange?: (value: string[]) => void;
 }
 
-export interface MultipleFileInputProps extends BaseFileInputProps {
+export interface MultipleFileInputProps extends Omit<
+    BaseFileInputProps,
+    "onChange"
+> {
     multiple?: false;
     onChange?: (value: string) => void;
 }
