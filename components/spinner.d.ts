@@ -1,4 +1,4 @@
-export const enum SpinnerType {
+export enum SpinnerType {
     WANDERING_CUBES = "wandering-cubes",
     CHASING_DOTS = "chasing-dots",
     PULSING_ELLIPSIS = "pulsing-ellipsis",

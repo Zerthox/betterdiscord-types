@@ -1,4 +1,4 @@
-export const enum TextColors {
+export enum TextColors {
     STANDARD = "bd-text-normal",
     MUTED = "bd-text-muted",
     ERROR = "bd-text-error",
@@ -13,7 +13,7 @@ export const enum TextColors {
     CUSTOM = "",
 }
 
-export const enum TextSizes {
+export enum TextSizes {
     SIZE_10 = "bd-text-10",
     SIZE_12 = "bd-text-12",
     SIZE_14 = "bd-text-14",

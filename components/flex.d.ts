@@ -1,10 +1,10 @@
-export const enum FlexDirection {
+export enum FlexDirection {
     VERTICAL = "bd-flex-vertical",
     HORIZONTAL = "bd-flex-horizontal",
     HORIZONTAL_REVERSE = "bd-flex-reverse",
 }
 
-export const enum FlexJustify {
+export enum FlexJustify {
     START = "bd-flex-justify-start",
     END = "bd-flex-justify-end",
     CENTER = "bd-flex-justify-center",
@@ -12,7 +12,7 @@ export const enum FlexJustify {
     AROUND = "bd-flex-justify-around",
 }
 
-export const enum FlexAlign {
+export enum FlexAlign {
     START = "bd-flex-align-start",
     END = "bd-flex-align-end",
     CENTER = "bd-flex-align-center",
@@ -20,7 +20,7 @@ export const enum FlexAlign {
     BASELINE = "bd-flex-align-baseline",
 }
 
-export const enum FlexWrap {
+export enum FlexWrap {
     NO_WRAP = "bd-flex-no-wrap",
     WRAP = "bd-flex-wrap",
     WRAP_REVERSE = "bd-flex-wrap-reverse",

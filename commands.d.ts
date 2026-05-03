@@ -35,7 +35,7 @@ export interface Command {
     predicate?(): boolean;
 }
 
-export const enum OptionType {
+export enum OptionType {
     STRING = 3,
     INTEGER = 4,
     BOOLEAN = 5,
@@ -64,13 +64,13 @@ export interface Option {
     choices?: Choice[];
 }
 
-export const enum CommandTypes {
+export enum CommandTypes {
     CHAT_INPUT = 1,
     USER = 2,
     MESSAGE = 3,
 }
 
-export const enum InputTypes {
+export enum InputTypes {
     BUILT_IN = 0,
     TEXT = 1,
     SEARCH = 2,
@@ -78,7 +78,7 @@ export const enum InputTypes {
     PLACEHOLDER = 4,
 }
 
-export const enum OptionTypes {
+export enum OptionTypes {
     SUB_COMMAND = 1,
     SUB_COMMAND_GROUP = 2,
     STRING = 3,
@@ -92,7 +92,7 @@ export const enum OptionTypes {
     ATTACHMENT = 11,
 }
 
-export const enum MessageEmbedTypes {
+export enum MessageEmbedTypes {
     IMAGE = "image",
     VIDEO = "video",
     LINK = "link",
