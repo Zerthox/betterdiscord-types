@@ -35,17 +35,10 @@ export interface Command {
     predicate?(): boolean;
 }
 
-export enum OptionType {
-    STRING = 3,
-    INTEGER = 4,
-    BOOLEAN = 5,
-    USER = 6,
-    CHANNEL = 7,
-    ROLE = 8,
-    MENTIONABLE = 9,
-    NUMBER = 10,
-    ATTACHMENT = 11,
-}
+export type OptionType = Exclude<
+    OptionTypes,
+    OptionTypes.SUB_COMMAND | OptionTypes.SUB_COMMAND_GROUP
+>;
 
 export interface Choice {
     name: string;
