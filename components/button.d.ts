@@ -1,13 +1,13 @@
 export type ButtonTypes = "button" | "submit" | "reset";
 
-export const enum ButtonLooks {
+export enum ButtonLooks {
     FILLED = "bd-button-filled",
     OUTLINED = "bd-button-outlined",
     LINK = "bd-button-link",
     BLANK = "bd-button-blank",
 }
 
-export const enum ButtonColors {
+export enum ButtonColors {
     BRAND = "bd-button-color-brand",
     BLURPLE = "bd-button-color-blurple",
     RED = "bd-button-color-red",
@@ -20,7 +20,7 @@ export const enum ButtonColors {
     CUSTOM = "",
 }
 
-export const enum ButtonSizes {
+export enum ButtonSizes {
     NONE = "",
     TINY = "bd-button-tiny",
     SMALL = "bd-button-small",
