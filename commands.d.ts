@@ -35,18 +35,6 @@ export interface Command {
     predicate?(): boolean;
 }
 
-export const enum OptionType {
-    STRING = 3,
-    INTEGER = 4,
-    BOOLEAN = 5,
-    USER = 6,
-    CHANNEL = 7,
-    ROLE = 8,
-    MENTIONABLE = 9,
-    NUMBER = 10,
-    ATTACHMENT = 11,
-}
-
 export interface Choice {
     name: string;
     value: string | number;
@@ -56,7 +44,7 @@ export interface Option {
     description?: string;
     name: string;
     required?: boolean;
-    type: OptionType;
+    type: OptionTypes;
     maxLength?: number;
     minLength?: number;
     maxValue?: number;
